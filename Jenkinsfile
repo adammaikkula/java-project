@@ -1,14 +1,8 @@
-
-
-ant -buildfile test.xml
-ant -f test.xml -y
-
-
 node('linux'){
-    stage('Test'){
+    stage('Unit Test'){
         git 'https://github.com/adammaikkula/java-project.git'
-        sh 'ant -f test.xml'
-        sh 'ant -buildfile test.xml'
+        junit 'ant -f test.xml'
+        junit 'ant -buildfile test.xml'
     }
 
     
