@@ -1,0 +1,90 @@
+Started by GitHub push by adammaikkula
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] node
+Running on 6683977e6029 in /workspace/java-pipeline2
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Test)
+[Pipeline] git
+Fetching changes from the remote Git repository
+Checking out Revision f0816156c52ae8a3d0df01d44afd7e071cab73c3 (refs/remotes/origin/master)
+Commit message: "Update Jenkinsfile"
+[Pipeline] sh
++ ant -f test.xml
+Buildfile: /workspace/java-pipeline2/test.xml
+ > git rev-parse --is-inside-work-tree # timeout=10
+ > git config remote.origin.url https://github.com/adammaikkula/java-project.git # timeout=10
+Fetching upstream changes from https://github.com/adammaikkula/java-project.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/adammaikkula/java-project.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f f0816156c52ae8a3d0df01d44afd7e071cab73c3
+ > git branch -a -v --no-abbrev # timeout=10
+ > git branch -D master # timeout=10
+ > git checkout -b master f0816156c52ae8a3d0df01d44afd7e071cab73c3
+ > git rev-list --no-walk 1203a22c71974591357619fc339d6297318cbaff # timeout=10
+
+clean:
+   [delete] Deleting directory /workspace/java-pipeline2/bin
+   [delete] Deleting directory /workspace/java-pipeline2/reports
+
+makedir:
+    [mkdir] Created dir: /workspace/java-pipeline2/bin
+    [mkdir] Created dir: /workspace/java-pipeline2/reports
+
+compile:
+    [javac] /workspace/java-pipeline2/test.xml:25: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 3 source files to /workspace/java-pipeline2/bin
+
+test:
+    [junit] Running RectangleTest
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.098 sec
+
+main:
+
+BUILD SUCCESSFUL
+Total time: 2 seconds
+[Pipeline] sh
++ ant -buildfile test.xml
+Buildfile: /workspace/java-pipeline2/test.xml
+
+clean:
+   [delete] Deleting directory /workspace/java-pipeline2/bin
+   [delete] Deleting directory /workspace/java-pipeline2/reports
+
+makedir:
+    [mkdir] Created dir: /workspace/java-pipeline2/bin
+    [mkdir] Created dir: /workspace/java-pipeline2/reports
+
+compile:
+    [javac] /workspace/java-pipeline2/test.xml:25: warning: 'includeantruntime' was not set, defaulting to build.sysclasspath=last; set to false for repeatable builds
+    [javac] Compiling 3 source files to /workspace/java-pipeline2/bin
+
+test:
+    [junit] Running RectangleTest
+    [junit] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.072 sec
+
+main:
+
+BUILD SUCCESSFUL
+Total time: 1 second
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (aws)
+[Pipeline] withCredentials
+[Pipeline] {
+[Pipeline] sh
++ aws_cloudformation describe-stack-resources --stack-name jenkins --region us-east-1
+/workspace/java-pipeline2@tmp/durable-a97fa7df/script.sh: line 1: aws_cloudformation: not found
+[Pipeline] }
+[Pipeline] // withCredentials
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+ERROR: script returned exit code 127
+Finished: FAILURE
