@@ -6,7 +6,7 @@ ant -f test.xml -y
 
 node('linux'){
     stage('Test'){
-        git ''
+        git 'https://github.com/adammaikkula/java-project.git'
          sh 'ant -buildfile test.xml'  
     }
 
