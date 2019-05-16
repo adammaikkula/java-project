@@ -15,8 +15,8 @@ node('linux'){
         sh 'ant -f build.xml -v'
     }
     
-     stage('Deploy'){
-         sh 'ant aws s3 cp rectangle.jar s3://aamhw10'
+     stage('aws'){
+         sh 'aws_cloudformation describe-stack-resources --stack-name jenkins --region us-east-1'  
     }
     
     stage('Results'){
