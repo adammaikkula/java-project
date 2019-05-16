@@ -7,11 +7,16 @@ ant -f test.xml -y
 node('linux'){
     stage('Test'){
         git 'https://github.com/adammaikkula/java-project.git'
-         sh 'ant -buildfile test.xml'  
+        sh 'ant -f test.xml -y'
+        sh 'ant -buildfile test.xml'
     }
 
     stage('Build'){
-        sh 'ant'
+        sh 'ant -f build.xml -v'
+    }
+    
+     stage('Deploy'){
+         sh 'ant aws s3 cp s3://aamhw10'
     }
     
     stage('Results'){
